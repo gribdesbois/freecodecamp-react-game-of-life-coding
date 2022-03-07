@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import newBoardStatus from './components/NewBoardStatus'
 
 export const totalBoardRows = 40
 export const totalBoardColumns = 60
@@ -19,6 +20,25 @@ export class App extends Component {
     generation: 0,
     isGameRunning: false,
     speed: 500,
+  }
+
+  runStopButton = () => {
+    return this.state.isGameRunning ? (
+      <button type="button" onClick={this.handleStop}>
+        Stop
+      </button>
+    ) : (
+      <button type="button" onClick={this.handleRun}>
+        Start
+      </button>
+    )
+  }
+
+  handleClearBoard = () => {
+    this.setState({
+      boardStatus: newBoardStatus(() => false),
+      generation: 0,
+    })
   }
 
   render() {

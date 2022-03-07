@@ -1,5 +1,5 @@
-import { totalBoardColumns } from '../../App'
-import { totalBoardRows } from '../../App'
+import { totalBoardColumns, totalBoardRows } from '../../App'
+
 const BoardGrid = ({ boardStatus, onToggleCellStatus }) => {
   const handleClick = (r, c) => onToggleCellStatus(r, c)
 

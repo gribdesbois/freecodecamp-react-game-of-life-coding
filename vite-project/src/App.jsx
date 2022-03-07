@@ -41,6 +41,13 @@ export class App extends Component {
     })
   }
 
+  handleNewBoard = () => {
+    this.setState({
+      boardStatus: newBoardStatus(),
+      generation: 0,
+    })
+  }
+
   render() {
     return <div>App</div>
   }

@@ -124,6 +124,35 @@ export class App extends Component {
     }))
   }
 
+  handleSpeedChange = (newSpeed) => {
+    this.setState({ speed: newSpeed })
+  }
+
+  handleRun = () => {
+    this.setState({ isGameRunning: true })
+  }
+
+  handleStop = () => {
+    this.setState({ isGameRunning: false })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { isGameRunning, speed } = this.state
+    const speedChanged = prevState.speed !== speed
+    const gameStarted = !prevState.isGameRunning && isGameRunning
+    const gameStopped = prevState.isGameRunning && !isGameRunning
+
+    if ((isGameRunning && speedChanged) || gameStopped) {
+      clearInterval(this.timerId)
+    }
+
+    if ((isGameRunning && speedChanged) || gameStarted) {
+      this.timerId = setInterval(() => {
+        this.handleStep()
+      }, speed)
+    }
+  }
+
   render() {
     return <div>App</div>
   }

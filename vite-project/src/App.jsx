@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import BoardGrid from './components/BoardGrid'
 import newBoardStatus from './components/NewBoardStatus'
 import Slider from './components/Slider'
+import './App.scss'
 
 export const totalBoardRows = 40
 export const totalBoardColumns = 60
@@ -177,7 +179,7 @@ export class App extends Component {
             disabled={isGameRunning}
             onClick={this.handleStep}
           >
-            Step
+            Stop
           </button>
           <button type="button" onClick={this.handleClearBoard}>
             Clear Board

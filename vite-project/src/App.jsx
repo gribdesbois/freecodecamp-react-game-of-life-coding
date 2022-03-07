@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import newBoardStatus from './components/NewBoardStatus'
+import Slider from './components/Slider'
 
 export const totalBoardRows = 40
 export const totalBoardColumns = 60
@@ -11,8 +12,6 @@ export const totalBoardColumns = 60
 2: (60) [false, false, true, ...]
 ...
 */
-
-const Slider = () => {}
 
 export class App extends Component {
   state = {
@@ -154,7 +153,41 @@ export class App extends Component {
   }
 
   render() {
-    return <div>App</div>
+    const { boardStatus, isGameRunning, generation, speed } = this.state
+
+    return (
+      <div>
+        <h1>Game of Life</h1>
+        <BoardGrid
+          boardStatus={boardStatus}
+          onToggleCellStatus={this.handleToggleCellStatus}
+        />
+        <div className="flexRow upperControls">
+          <span>
+            {'+ '}
+            <Slider speed={speed} onSpeedChange={this.handleSpeedChange} />
+            {' -'}
+          </span>
+          {`Generation: ${generation}`}
+        </div>
+        <div className="flexRow lowerControls">
+          {this.runStopButton()}
+          <button
+            type="button"
+            disabled={isGameRunning}
+            onClick={this.handleStep}
+          >
+            Step
+          </button>
+          <button type="button" onClick={this.handleClearBoard}>
+            Clear Board
+          </button>
+          <button type="button" onClick={this.handleNewBoard}>
+            New Board
+          </button>
+        </div>
+      </div>
+    )
   }
 }
 
